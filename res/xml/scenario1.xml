@@ -1,0 +1,38 @@
+<scenario>
+	<consumers>
+        <consumer id="c1">
+			<name>consumer1</name>
+			<producerId>p1</producerId>
+
+			<behaviour timeUnit="ms" begin="1" end="10">
+   				<frequency>45</frequency>
+    			<processingTime timeUnit="ms">1</processingTime>
+   	 			<datasize sizeUnit="bytes">125</datasize>
+			</behaviour>
+		</consumer>
+
+		<consumer id="c2">
+			<name>consumer2</name>
+			<producerId>p2</producerId>
+
+			<behaviour timeUnit="ms" begin="1" end="10">
+    			<frequency>12</frequency>
+    			<processingTime timeUnit="ms">5</processingTime>
+    			<datasize sizeUnit="bytes">20</datasize>
+			</behaviour>    
+		</consumer>
+	</consumers>
+	
+	<producers>
+    	<producer id="p1">
+        	<name>producer1</name>
+        	<datasize sizeUnit="bytes">40</datasize>
+    	</producer>
+		<producer id="p2">
+        	<name>producer2</name>
+        	<datasize sizeUnit="bytes">50</datasize>
+    	</producer>
+	</producers>
+
+	<duration timeUnit="ms">155</duration>
+	</scenario> 

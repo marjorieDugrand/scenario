@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:include schemaLocation="/home/marjorie/workspace/ScenarioParser/res/xsd/types.xsd"/>
+	
+	<xsd:complexType name="datasize_t">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:positiveInteger">
+				<xsd:attribute name="sizeUnit" type="sizeUnitType" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>	
+	</xsd:complexType>
+
+	<xsd:complexType name="behaviour_t">
+		<xsd:sequence>
+			<xsd:element name="frequency" type="xsd:positiveInteger"/>
+			<xsd:element name="processingTime" type="time_t"/>
+			<xsd:element name="datasize" type="datasize_t"/>
+		</xsd:sequence>
+		<xsd:attribute name="begin" type="xsd:nonNegativeInteger" use="required"/>
+		<xsd:attribute name="end" type="xsd:positiveInteger" use="required"/>
+		<xsd:attribute name="timeUnit" type="timeUnitType" use="required"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="consumer_t">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="producerId" type="xsd:IDREF"/>
+			<xsd:element name="behaviour" type="behaviour_t" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+
+	<xsd:element name="consumers">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="consumer" type="consumer_t" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="producer_t">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="datasize" type="datasize_t"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+
+	<xsd:element name="producers">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="producer" type="producer_t" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="scenario">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="consumers"/>
+				<xsd:element ref="producers"/>
+				<xsd:element name="duration" type="time_t"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

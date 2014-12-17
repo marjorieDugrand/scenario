@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Add more values if needed -->
+	<xsd:simpleType name="timeUnitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ms"/>
+			<xsd:enumeration value="secs"/>
+			<xsd:enumeration value="mins"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+		<!-- complex types -->
+	<xsd:complexType name="time_t">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:positiveInteger">
+				<xsd:attribute name="timeUnit" type="timeUnitType" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="percentage_t">
+		<xsd:annotation>
+			<xsd:documentation>The percent type specifies a percentage from 0 to 100.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minInclusive value="0.0"/>
+			<xsd:maxInclusive value="100.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- Add more values if needed -->
+	<xsd:simpleType name="sizeUnitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="bytes"/>
+			<xsd:enumeration value="Kbytes"/>
+			</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
